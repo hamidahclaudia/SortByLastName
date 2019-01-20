@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SortedName
+namespace SortByLastNameApp
 {
     public partial class Form1 : Form
     {
         private SortName sort;
         private String unsortedNameText;
+        private String path;
 
         public Form1(SortName _sort)
         {
@@ -18,16 +19,17 @@ namespace SortedName
         {
             try
             {
-                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", Multiselect=false, ValidateNames=true })
+                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Text Documents|*.txt", Multiselect = false, ValidateNames = true })
                 {
-                    if(ofd.ShowDialog() == DialogResult.OK)
+                    if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        textBox1.Text = sort.ReadUnsortedName(ofd.FileName);
-                        unsortedNameText = textBox1.Text;                        
+                        textBox1.Text = sort.ReadUnsortedList(ofd.FileName);
+                        path = ofd.FileName;
+                        unsortedNameText = textBox1.Text;
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -37,7 +39,7 @@ namespace SortedName
         {
             try
             {
-                textBox1.Text = sort.SortByLastname(unsortedNameText);
+                textBox1.Text = sort.SortByLastname(unsortedNameText, path);
             }
             catch (Exception ex)
             {

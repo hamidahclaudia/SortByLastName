@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SortedName
+namespace SortByLastNameApp
 {
     public class Name
     {

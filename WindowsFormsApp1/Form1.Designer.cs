@@ -1,4 +1,4 @@
-﻿namespace SortedName
+﻿namespace SortByLastNameApp
 {
     partial class Form1
     {

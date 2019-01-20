@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SortedName
+namespace SortByLastNameApp
 {
     static class Program
     {

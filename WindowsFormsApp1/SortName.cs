@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
-namespace SortedName
+namespace SortByLastNameApp
 {
     public class SortName
     {
         private List<Name> names;
 
-        public String ReadUnsortedName(String text)
+        public String ReadUnsortedList(String text)
         {
             String result = "";
             try
-            {   // Open the text file using a stream reader.
-                using (StreamReader sr = new StreamReader(text))
-                {
-                    result = sr.ReadToEnd();
-                }
+            {
+                //Read file
+                result = System.IO.File.ReadAllText(text);
             }
             catch (Exception e)
             {
@@ -26,11 +23,18 @@ namespace SortedName
             return result;
         }
 
-        public String SortByLastname(String text)
+        public String SortByLastname(String text, String path)
         {
-            String result = "";
+            String resultText = "";
+            String fileNameSorted = "sorted-name-list.txt";
+            String fileNameUnsorted = path.Split(new char[] { '\\' }).Last();
+            String resultFullPathSorted = path.Replace(fileNameUnsorted, fileNameSorted);
+
             names = new List<Name>();
+
+            //Split text per line
             String[] textName = text.Split(new[] { "\r\n" }, StringSplitOptions.None);
+
             try
             {
                 foreach (var name in textName)
@@ -40,17 +44,23 @@ namespace SortedName
                     newName.lastName = name.Split().LastOrDefault();
                     names.Add(newName);
                 }
+
+                //Sort By Lastname
                 names = names.OrderBy(x => x.lastName).ToList();
-                foreach (var name in names)
-                {
-                    result += name.fullName + "\r\n";
-                }
+
+                //Write to .txt file
+                System.IO.File.WriteAllLines(resultFullPathSorted, names.Select(x => x.fullName));
+
+                //Write for screen
+                resultText = "You can access the sorted list on "
+                    + resultFullPathSorted + "\r\n\r\n"
+                    + System.IO.File.ReadAllText(resultFullPathSorted);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            return result;
+            return resultText;
         }
     }
 }
