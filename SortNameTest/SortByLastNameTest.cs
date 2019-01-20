@@ -11,8 +11,9 @@ namespace SortNameTest
         public void TestMethod1()
         {
             SortName sort = new SortName();
-            String pathFileUnsorted = "C:\\Users\\Claudia\\source\\repos\\SortByLastNameApp\\SortNameTest\\FileUnsorted\\unsorted-name.txt";
-            String pathExpectedResult = "C:\\Users\\Claudia\\source\\repos\\SortByLastNameApp\\SortNameTest\\FileUnsorted\\testExpected.txt";
+            String pathFileUnsorted = "C:\\Users\\Claudia\\source\\repos\\SortByLastNameApp\\SortNameTest\\FileForTesting\\unsorted-name.txt";
+            String pathExpectedResult = "C:\\Users\\Claudia\\source\\repos\\SortByLastNameApp\\SortNameTest\\FileForTesting\\testExpected.txt";
+            String pathSortedResult = "C:\\Users\\Claudia\\source\\repos\\SortByLastNameApp\\SortNameTest\\FileForTesting\\sorted-name-list.txt";
 
             String text = System.IO.File.ReadAllText(pathFileUnsorted);
 
@@ -20,7 +21,9 @@ namespace SortNameTest
 
             String sorted = sort.SortByLastname(text, pathFileUnsorted);
 
-            Assert.AreEqual(expectedResult, sorted, "The result is not same as expected");
+            String sortedResult = System.IO.File.ReadAllText(pathSortedResult);
+
+            Assert.AreEqual(expectedResult, sortedResult, "The result is not same as expected");
 
 
 

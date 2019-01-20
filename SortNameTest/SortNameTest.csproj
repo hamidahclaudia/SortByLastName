@@ -61,8 +61,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FileUnsorted\testExpected.txt" />
-    <Content Include="FileUnsorted\unsorted-name.txt" />
+    <Content Include="FileForTesting\testExpected.txt" />
+    <Content Include="FileForTesting\unsorted-name.txt" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
