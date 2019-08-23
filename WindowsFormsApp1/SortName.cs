@@ -1,36 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WindowsFormsApp1;
+using WindowsFormsApp1.ApplicationEntity;
 
 namespace SortByLastNameApp
 {
-    public class SortName
-    {
-        private List<Name> names;
-
-        public String ReadUnsortedList(String text)
-        {
-            String result = "";
-            try
-            {
-                //Read file
-                result = System.IO.File.ReadAllText(text);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return result;
-        }
+    public class SortName 
+    { 
 
         public String SortByLastname(String text, String path)
         {
+            List<Name> names = new List<Name>();
             String resultText = "";
             String fileNameSorted = "sorted-name-list.txt";
             String fileNameUnsorted = path.Split(new char[] { '\\' }).Last();
             String resultFullPathSorted = path.Replace(fileNameUnsorted, fileNameSorted);
-
-            names = new List<Name>();
 
             //Split text per line
             String[] textName = text.Split(new[] { "\r\n" }, StringSplitOptions.None);

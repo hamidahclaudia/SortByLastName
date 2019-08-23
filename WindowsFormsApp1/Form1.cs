@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
+using WindowsFormsApp1.ApplicationShared.FileHelper;
+using WindowsFormsApp1.ApplicationShared.SortName;
 
 namespace SortByLastNameApp
 {
     public partial class Form1 : Form
     {
-        private SortName sort;
+        private ISortName sortName;
+        private IFileHelper fileHelper; 
         private String unsortedNameText;
         private String path;
 
-        public Form1(SortName _sort)
+        public Form1(ISortName _sortName, IFileHelper _filehelper)
         {
             InitializeComponent();
-            sort = _sort;
+            this.sortName = _sortName;
+            this.fileHelper = _filehelper;
         }
 
         private void ChooseButton_Click(object sender, EventArgs e)
@@ -23,7 +27,7 @@ namespace SortByLastNameApp
                 {
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        textBox1.Text = sort.ReadUnsortedList(ofd.FileName);
+                        textBox1.Text = fileHelper.ReadTextFile(ofd.FileName);
                         path = ofd.FileName;
                         unsortedNameText = textBox1.Text;
                     }
@@ -39,7 +43,8 @@ namespace SortByLastNameApp
         {
             try
             {
-                textBox1.Text = sort.SortByLastname(unsortedNameText, path);
+                var nameSorted =  sortName.SortByFirstName(unsortedNameText, path);
+                //fileHelper.WriteFile()
             }
             catch (Exception ex)
             {
