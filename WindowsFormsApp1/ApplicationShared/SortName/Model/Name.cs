@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp1.ApplicationEntity
+namespace WindowsFormsApp1.ApplicationShared.SortName.Model
 {
     public class Name
     {

@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using WindowsFormsApp1;
+using WindowsFormsApp1.ApplicationService;
+using WindowsFormsApp1.ApplicationShared.FileHelper;
+using WindowsFormsApp1.ApplicationShared.SortName;
 
 namespace SortByLastNameApp
 {
@@ -11,10 +15,16 @@ namespace SortByLastNameApp
         [STAThread]
         static void Main()
         {
-            SortName sort = new SortName();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(sort));
+
+            FileHelper fileHelper = new FileHelper();
+            SortName sortName = new SortName();
+
+            IFileHelper iFileHelper = fileHelper;
+            ISortName iSortName = sortName;
+
+            Application.Run(new Form1(iFileHelper, iSortName));
         }
     }
 }

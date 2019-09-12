@@ -5,26 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApp1.ApplicationShared.FileHelper;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp1.ApplicationService
 {
     public class FileHelper : IFileHelper
-
     {
-        private string filePath;
-
-        public FileHelper(string filePath)
-        {
-            this.filePath = filePath;
-        }
-
-
         public string ReadTextFile(string path)
         {
             String result = "";
             try
-            {
-                //Read file
-                result = System.IO.File.ReadAllText(filePath);
+            { 
+                result = System.IO.File.ReadAllText(path);
             }
             catch (Exception e)
             {
@@ -44,7 +34,7 @@ namespace WindowsFormsApp1
             {
                 Console.WriteLine(e.Message);
             }
-            
+
         }
     }
 }
